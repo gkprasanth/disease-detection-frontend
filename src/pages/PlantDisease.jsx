@@ -14,7 +14,7 @@ function PlantDisease() {
     setError(null); // Reset previous errors
 
     try {
-      const response = await fetch(`http://${process.env.BASE_URL}/predict_plant_disease`, {
+      const response = await fetch(`http://54.172.67.185:8000/predict_plant_disease`, {
         method: 'POST',
         body: formData,
       });
