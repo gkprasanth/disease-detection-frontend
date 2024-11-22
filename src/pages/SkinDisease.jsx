@@ -14,7 +14,7 @@ function SkinDisease() {
     setError(null); // Reset any previous errors
 
     try {
-      const response = await fetch('http://localhost:5000/predict_skin_disease', {
+      const response = await fetch('http://process.env.BASE_URL/predict_skin_disease', {
         method: 'POST',
         body: formData,
       });
