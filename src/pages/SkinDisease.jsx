@@ -14,7 +14,8 @@ function SkinDisease() {
     setError(null); // Reset any previous errors
 
     try {
-      const response = await fetch('http://54.172.67.185:8000/predict_skin_disease', {
+      
+      const response = await fetch('54.172.67.185:8000/predict_skin_disease', {
         method: 'POST',
         body: formData,
       });

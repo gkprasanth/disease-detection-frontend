@@ -12,9 +12,11 @@ function PlantDisease() {
     formData.append('image', file);
     setIsLoading(true); // Start loading state
     setError(null); // Reset previous errors
-
+    const apiUrl = "https://asynclabs.org/predict_plant_disease";
+    console.log("API URL:", apiUrl);
+    
     try {
-      const response = await fetch(`http://54.172.67.185:8000/predict_plant_disease`, {
+      const response = await fetch(`/api/predict_plant_disease`, {
         method: 'POST',
         body: formData,
       });
