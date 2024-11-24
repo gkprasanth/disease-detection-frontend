@@ -16,7 +16,7 @@ function PlantDisease() {
     console.log("API URL:", apiUrl);
     
     try {
-      const response = await fetch(`/api/predict_plant_disease`, {
+      const response = await fetch(`${apiUrl}`, {
         method: 'POST',
         body: formData,
       });

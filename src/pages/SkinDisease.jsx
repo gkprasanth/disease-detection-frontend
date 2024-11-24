@@ -15,7 +15,7 @@ function SkinDisease() {
 
     try {
       
-      const response = await fetch('54.172.67.185:8000/predict_skin_disease', {
+      const response = await fetch('https://asynclabs.org/predict_skin_disease', {
         method: 'POST',
         body: formData,
       });
