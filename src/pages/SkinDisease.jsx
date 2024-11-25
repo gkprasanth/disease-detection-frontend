@@ -14,7 +14,6 @@ function SkinDisease() {
     setError(null); // Reset any previous errors
 
     try {
-      
       const response = await fetch('https://asynclabs.org/predict_skin_disease', {
         method: 'POST',
         body: formData,
