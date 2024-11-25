@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import FileUpload from '../components/FileUpload';
-import DiseaseInfo from '../components/DiseaseInfo';
 
 function SkinDisease() {
   const [result, setResult] = useState(null);
+  const [diseaseInfo, setDiseaseInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -25,6 +25,16 @@ function SkinDisease() {
 
       const data = await response.json();
       setResult(data);
+
+      // Fetch additional disease info based on the predicted disease name
+      const diseaseResponse = await fetch(`http://localhost:5000/skin_info?disease_name=${data.status}`);
+      if (diseaseResponse.ok) {
+        const diseaseData = await diseaseResponse.json();
+        setDiseaseInfo(diseaseData);
+      } else {
+        throw new Error('Failed to fetch disease information.');
+      }
+
     } catch (error) {
       console.error('Error uploading file:', error);
       setError('Failed to upload the file. Please try again.');
@@ -72,6 +82,19 @@ function SkinDisease() {
               </li>
             ))}
           </ul>
+
+          {/* Display additional disease information */}
+          {diseaseInfo && (
+            <div className="mt-6 p-6 bg-gray-100 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold text-gray-800">Disease Information</h3>
+              <p className="text-lg text-gray-800">
+                <strong>About {diseaseInfo.disease_name}:</strong> {diseaseInfo.disease_info}
+              </p>
+              <p className="text-lg text-gray-800">
+                <strong>Recommended Cure:</strong> {diseaseInfo.cure_info}
+              </p>
+            </div>
+          )}
         </div>
       )}
     </div>
