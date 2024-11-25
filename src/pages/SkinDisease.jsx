@@ -27,7 +27,7 @@ function SkinDisease() {
       setResult(data);
 
       // Fetch additional disease info based on the predicted disease name
-      const diseaseResponse = await fetch(`http://localhost:5000/skin_info?disease_name=${data.status}`);
+      const diseaseResponse = await fetch(`https://asynclabs.org/skin_info?disease_name=${data.status}`);
       if (diseaseResponse.ok) {
         const diseaseData = await diseaseResponse.json();
         setDiseaseInfo(diseaseData);
